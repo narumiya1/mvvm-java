@@ -11,36 +11,36 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class MyAplication extends Application {
 
-    final String TAG = getClass().getSimpleName() ;
-    private static MyAplication mInstance ;
-    private static Retrofit retrofit =  null ;
+    final String TAG = getClass().getSimpleName();
+    private static MyAplication mInstance;
+    private static Retrofit retrofit = null;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mInstance = this ;
+        mInstance = this;
     }
 
-    public static  synchronized MyAplication getInstance(){
-        return mInstance ;
+    public static synchronized MyAplication getInstance() {
+        return mInstance;
     }
 
     public boolean isNetworkAvailable() {
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        NetworkInfo networkInfo = null ;
+        NetworkInfo networkInfo = null;
 
         if (connectivityManager != null) {
             networkInfo = connectivityManager.getActiveNetworkInfo();
         }
 
-        return networkInfo!= null && networkInfo.isConnected() ;
+        return networkInfo != null && networkInfo.isConnected();
     }
 
     public static Retrofit getRetrofitClient() {
         if (retrofit == null) {
-            okhttp3.OkHttpClient client = new okhttp3.OkHttpClient.Builder().build() ;
+            okhttp3.OkHttpClient client = new okhttp3.OkHttpClient.Builder().build();
 
             retrofit = new Retrofit.Builder()
                     .client(client)
